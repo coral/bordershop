@@ -3,7 +3,6 @@ package bordershop
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -73,7 +72,6 @@ func GetCategory(CategoryID int64) (CategoryResponse, error) {
 	url := fmt.Sprintf("https://www.bordershop.com/se/bordershop/api/catalogsearchapi/productsearch?categoryId=%s", cgParsed)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		log.Fatal("NewRequest: ", err)
 		return CategoryResponse{}, err
 	}
 
@@ -81,7 +79,6 @@ func GetCategory(CategoryID int64) (CategoryResponse, error) {
 
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatal("Do: ", err)
 		return CategoryResponse{}, err
 	}
 
@@ -89,9 +86,7 @@ func GetCategory(CategoryID int64) (CategoryResponse, error) {
 
 	var category CategoryResponse
 
-	// Use json.Decode for reading streams of JSON data
 	if err := json.NewDecoder(resp.Body).Decode(&category); err != nil {
-		log.Println(err)
 		return CategoryResponse{}, err
 	}
 
