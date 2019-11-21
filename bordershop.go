@@ -92,3 +92,32 @@ func GetCategory(CategoryID int64) (CategoryResponse, error) {
 
 	return category, nil
 }
+
+func GetMostPopular(Count int64) (CategoryResponse, error) {
+
+	cg := strconv.FormatInt(Count, 10)
+	cgParsed := url.QueryEscape(cg)
+
+	url := fmt.Sprintf("https://www.bordershop.com/se/bordershop/api/recommendationapi/getmostpopularrightnow?count=%s", cgParsed)
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return CategoryResponse{}, err
+	}
+
+	client := &http.Client{}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return CategoryResponse{}, err
+	}
+
+	defer resp.Body.Close()
+
+	var category CategoryResponse
+
+	if err := json.NewDecoder(resp.Body).Decode(&category); err != nil {
+		return CategoryResponse{}, err
+	}
+
+	return category, nil
+}
