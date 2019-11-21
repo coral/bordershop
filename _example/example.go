@@ -12,7 +12,12 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println(result.Products[0].DisplayName)
-	fmt.Println(result.Products[0].Price)
+	for _, product := range result.Products {
+		fmt.Println("-----   PRODUKT    ------")
+		fmt.Println(product.DisplayName)
+		fmt.Println(product.Price.AmountAsDecimal)
+		fmt.Println(product.Image)
+		fmt.Println()
+	}
 
 }
