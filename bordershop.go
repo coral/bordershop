@@ -16,7 +16,14 @@ type CategoryResponse struct {
 			ShowPriceForOne bool   `json:"showPriceForOne"`
 			IsSmileOffer    bool   `json:"isSmileOffer"`
 			DiscountText    string `json:"discountText"`
-			TakeMoreText    string `json:"takeMoreText"`
+			BeforePrice     struct {
+				AmountAsDecimal float64 `json:"amountAsDecimal"`
+				Amount          string  `json:"amount"`
+				Major           string  `json:"major"`
+				Minor           string  `json:"minor"`
+			} `json:"beforePrice,omitempty"`
+			SplashText        string `json:"splashText"`
+			BeforePricePrefix string `json:"beforePricePrefix,omitempty"`
 		} `json:"discount,omitempty"`
 		LeftSplash struct {
 			Type int `json:"type"`
