@@ -8,9 +8,8 @@ import (
 	"strconv"
 )
 
-type CategoryResponse struct {
-	Products []struct {
-		IsCheapest       bool `json:"isCheapest"`
+type Product struct {
+	IsCheapest       bool `json:"isCheapest"`
 		LeftBottomSplash bool `json:"leftBottomSplash"`
 		Discount         struct {
 			ShowPriceForOne bool   `json:"showPriceForOne"`
@@ -55,7 +54,10 @@ type CategoryResponse struct {
 		DisplayName string `json:"displayName"`
 		Image       string `json:"image"`
 		URL         string `json:"url"`
-	} `json:"products"`
+}
+
+type CategoryResponse struct {
+	Products []Product `json:"products"`
 	Facets []struct {
 		DisplayName string `json:"displayName"`
 		Key         string `json:"key"`
