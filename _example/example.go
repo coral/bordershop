@@ -13,10 +13,11 @@ func main() {
 	}
 
 	for _, product := range result.Products {
-
-		fmt.Printf("%+v\n", product)
-		break;
+		fmt.Println("------   PRODUKT    ------")
+		fmt.Println(product.DisplayName)
+		fmt.Println(product.Price.AmountAsDecimal)
+		fmt.Println(product.Image)
+		fmt.Println()
 	}
-
 
 }
